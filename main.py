@@ -2,10 +2,12 @@ from typing import Union
 from fastapi import FastAPI
 import openai
 import os
+from mangum import Mangum
 
 openai.api_key = os.environ.get('openai_api_key')
 
 app = FastAPI()
+handler = Mangum(app)
 
 @app.get("/")
 def read_root():
